@@ -133,7 +133,7 @@
         $staffno = $('#staffno').val();
         $.ajax({
             type: "GET",
-            url: "https://ijnsurveillance.awan.info/searchstaff?staffno=" + $staffno + "&photo",
+            url: "https://ijnsurveillance.awan.info/searchstaff?staffno=" + $staffno ,
             dataType: "json",
             success: function(dt) {
                 data = dt[0];
