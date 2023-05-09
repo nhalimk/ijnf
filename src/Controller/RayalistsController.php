@@ -20,7 +20,7 @@ class RayalistsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->Auth->allow(['checkin']);
+        $this->Auth->allow(['checkin','result']);
     }
     public function index()
     {
@@ -85,16 +85,47 @@ class RayalistsController extends AppController
         $this->viewBuilder()->setLayout('blank');
         $rayalist = $this->Rayalists->newEmptyEntity();
         if ($this->request->is('post')) {
-            $rayalist = $this->Rayalists->patchEntity($rayalist, $this->request->getData());
-            if ($this->Rayalists->save($rayalist)) {
-                $this->Flash->success(__('The rayalist has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The rayalist could not be saved. Please, try again.'));
+            $conn = ConnectionManager::get('default');
+            $str = "select * from rayalists
+                        where rayalists.staffno = '$rayalist->staffno'";
+                $data = $conn->execute($str);
+                $staff = $data ->fetch('assoc');
+                
+                if($staff){
+                    return $this->redirect(['action' => 'result/',$staff['id']]);
+                }else{
+                    
+                    $rayalist = $this->Rayalists->patchEntity($rayalist, $this->request->getData());
+                    if ($this->Rayalists->save($rayalist)) {
+                        $this->Flash->success(__('The record has been saved.'));
+    
+                        return $this->redirect(['action' => 'result/',$rayalist->id]);
+                    }
+                    $this->Flash->error(__('The record could not be saved. Please, try again.'));
+                }
+            $this->Flash->error(__('The record could not be saved. Please, try again.'));
         }
         $this->set(compact('rayalist'));
     }
+    
+    public function result($id = null)
+    {
+        $this->viewBuilder()->setLayout('blank');
+        $dine = $this->Rayalists
+        ->get($id, [
+            'contain' => [],
+        ]);
+
+        $conn = ConnectionManager::get('default');
+		$str = "select * from rayalists
+                left join staffs on staffs.staffno = rayalists.staffno
+				where rayalists.staffno = '$dine->staffno'";
+        $data = $conn->execute($str);
+        $staff = $data ->fetch('assoc');
+        
+        $this->set(compact('dine','staff'));
+    }
+
     public function add()
     {
         $rayalist = $this->Rayalists->newEmptyEntity();
