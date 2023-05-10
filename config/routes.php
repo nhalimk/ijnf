@@ -57,6 +57,8 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/lucky',array('controller' => 'Gifts','action' => 'lucky','[method]' => ['GET','POST']));
         $builder->connect('/search',array('controller' => 'Rayalists','action' => 'search','[method]' => ['GET','POST']));
         $builder->connect('/searchatt',array('controller' => 'Rayalists','action' => 'searchatt','[method]' => ['GET','POST']));
+        $builder->connect('/searchgift',array('controller' => 'Gifts','action' => 'searchgift','[method]' => ['GET','POST']));
+        $builder->connect('/searchexgift',array('controller' => 'Gifts','action' => 'searchexgift','[method]' => ['GET','POST']));
         $builder->connect('/check-in', ['controller' => 'Rayalists', 'action' => 'checkin']);
 
         /*

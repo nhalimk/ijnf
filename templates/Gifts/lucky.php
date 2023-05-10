@@ -90,10 +90,11 @@
 					</div>
 				</figcaption>
 				<img id="avatarstaff" />
-				<?= $this->Form->create($present, ['class' => 'text-left container mt-5', 'id' => 'kt_form']) ?>
+				<?= $this->Form->create($gift, ['class' => 'text-left container mt-5', 'id' => 'kt_form']) ?>
 
 				<input class="form-outline-gray" name="staffno" id="staff" type="hidden" required>
 				<input class="form-outline-gray" name="fullname" id="staffname" type="hidden" required>
+				<input class="form-outline-gray" name="department" id="staffdept" type="hidden" required>
 				<div class="row">
 					<div class="col-12 text-center">
 						<input class="pr-5 pl-5 pt-2 pb-2 text-white btn text-uppercase font-weight-bold btn-gradient mt-4 mb-4" type="submit" name="submit" id="submit" value="Seterusnya">
@@ -157,14 +158,11 @@
 	}
 
 	$("#cari").click(function() {
+		$search = $('#search')
 		$total = $('#total').val();
 		$x = generateRandom($total);
 		$att = $('#total').val();
-		alert($att);
-		if ($total > $att) {
 
-		}
-		alert($total);
 		$.ajax({
 			type: "GET",
 			url: "./search?sid=" + $x,
@@ -174,14 +172,17 @@
 				alert(dt.length);
 				if (data != null && dt.length > 0) {
 					$('#result').show(500);
-					$('#staffno').html(data['staffno']);
-					$('#staff').val(data['staff']);
+					$('#staffno').val(data['staffno']);
+					$('#staff').val(data['staffno']);
 					$('#staffname').val(data['fullname']);
+					$('#staffdept').val(data['department']);
 					$('#fullname').html(data['fullname']);
 					$('#avatarstaff').attr('src', data['photo']);
 					$('#kt_form').submit();
 					$("form").first().submit();
-				} else {}
+				} else {
+					
+				}
 			},
 			error: function() {
 				// $('#alert_error').modal('show');
@@ -189,6 +190,9 @@
 		});
 	});
 
+	$("#staffno").focusout(function() {
+		load();
+	});
 
 	$(document).ready(function() {});
 </script>

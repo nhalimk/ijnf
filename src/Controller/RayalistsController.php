@@ -38,11 +38,6 @@ class RayalistsController extends AppController
     public function search()
     {   
         $id = isset($_GET['sid']) ? $_GET['sid'] : '' ;
-        $fullname = isset($_GET['fullname']) ? $_GET['fullname'] : '' ;
-        $icno = isset($_GET['icno']) ? $_GET['icno'] : '' ;
-        
-        //$staff = $this->Staffs->find('all')->where(['staffno'=>$code])->first();
-		
 		$conn = ConnectionManager::get('default');
 		$str = "select * from rayalists 
 				where rayalists.id = $id ";

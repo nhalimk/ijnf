@@ -26,6 +26,7 @@ class GiftsController extends AppController
     
     public function search()
     {   
+        $id = isset($_GET['sid']) ? $_GET['sid'] : '' ;
 		$conn = ConnectionManager::get('default');
 		$str = "select * from rayalists 
 				where rayalists.id = $id ";
@@ -40,18 +41,44 @@ class GiftsController extends AppController
         ]);
         $this->RequestHandler->renderAs($this, 'json');
     }
+    
+    public function searchexgift()
+    {   
+        $id = isset($_GET['staffno']) ? $_GET['staffno'] : '' ;
+		$conn = ConnectionManager::get('default');
+		$str = "select * from gifts 
+				where gifts.staffno = $id ";
+        $data = $conn->execute($str);
+        $staff = $data ->fetchAll('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+    
     public function lucky()
     {
         $this->viewBuilder()->setLayout('blank');
         $gift = $this->Gifts->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $gift = $this->Gifts->patchEntity($gift, $this->request->getData());
-            if ($this->Gifts->save($gift)) {
-                $this->Flash->success(__('The gift has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post') && $_POST['staffno'] != ''  && $_POST['staffno'] != null) {
+		    $conn = ConnectionManager::get('default');
+            $str = "select * from gifts where gifts.staffno = '".$_POST['staffno']."' ";
+            $data = $conn->execute($str);
+            $staff = $data ->fetch('assoc');
+            if(!$staff){
+                $gift = $this->Gifts->patchEntity($gift, $this->request->getData());
+                if ($this->Gifts->save($gift)) {
+                    $this->Flash->success(__('The gift has been saved.'));
+                    return $this->redirect(['action' => 'lucky']);
+    
+                }
             }
             $this->Flash->error(__('The gift could not be saved. Please, try again.'));
+            return $this->redirect(['action' => 'lucky']);
         }
         $this->set(compact('gift'));
 		

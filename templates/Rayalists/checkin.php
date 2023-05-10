@@ -100,8 +100,7 @@
 
 
             <div class="image text-center">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png" class="rounded" width="100" id="avatarstaff" style="border: 2px grey solid ;
-                                  border-image: url(border.png) 30 round;" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png" class="rounded" width="100" id="avatarstaff" style="border: 2px grey solid " />
             </div>
         </div>
         <div class="col-12 col-lg-12">
