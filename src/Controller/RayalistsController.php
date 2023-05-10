@@ -20,7 +20,7 @@ class RayalistsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->Auth->allow(['checkin','resultz','searchatt']
+        $this->Auth->allow(['checkin','result','searchatt']);
     }
     public function index()
     {
