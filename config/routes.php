@@ -62,6 +62,7 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/check-in', ['controller' => 'Rayalists', 'action' => 'checkin']);
         $builder->connect('/winner',array('controller' => 'Gifts','action' => 'winner','[method]' => ['GET','POST']));
         $builder->connect('/arrival',array('controller' => 'Rayalists','action' => 'arrival','[method]' => ['GET','POST']));
+        $builder->connect('/savegoodies',array('controller' => 'Rayalists','action' => 'savegoodies','[method]' => ['GET','POST']));
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.

@@ -22,6 +22,36 @@ class RayalistsController extends AppController
         parent::initialize();
         $this->Auth->allow(['checkin','result','searchatt','dashboard','arrival']);
     }
+
+    public function savegoodies()
+    {
+        $id = isset($_GET['locationid']) ? $_GET['locationid'] : '';
+        $code = isset($_GET['editeditemname']) ? $_GET['editeditemname'] : '';
+        $rayalist = $this->Rayalists->get($id, [
+            'contain' => [],
+        ]);
+        if ($this->request->is(['patch', 'post', 'put','get'])) {
+            $rayalist = $this->Rayalists->patchEntity($rayalist, $this->request->getData());
+            $rayalist->gate = $code;
+            if ($this->Rayalists->save($rayalist)) {
+                $this->Flash->success(__('The location has been saved.'));
+
+                //return $location;
+                $this->set([
+                    'my_response' => $rayalist,
+                    '_serialize' => 'my_response',
+                ]);
+                $this->RequestHandler->renderAs($this, 'json');
+            }
+            $this->Flash->error(__('The location could not be saved. Please, try again.'));
+        }
+        //$this->set(compact('location'));
+                $this->set([
+                    'my_response' => $rayalist,
+                    '_serialize' => 'my_response',
+                ]);
+                $this->RequestHandler->renderAs($this, 'json');
+    }
     public function index()
     {
         //$rayalists = $this->paginate($this->Rayalists);

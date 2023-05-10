@@ -46,6 +46,70 @@
 
 <?php $this->start('script'); ?>
 <script type="text/javascript">
+
+function updateitemname(bi) {
+        /* Start function updateq */
+        var q1 = "#editedname" + bi;
+        if ($(q1).children('input').length == 0) {
+            var inputbox = "<input type='text' class='inputbox' value=\"" + $(q1).text() + "\">";
+            $(q1).html(inputbox);
+            $("input.inputbox").focus();
+            $("input.inputbox").keypress(function(e) {
+                if (e.which == 13) {
+                    var textvalue = $.trim($(this).val());
+                    if (textvalue == "") {
+                        textvalue = this.defaultValue+'';
+                    }
+                    var bilitemid = $(bid).val();
+                    //                    console.log(billitemid);
+                    $(q1).html((textvalue+'<sup><i class="fa fa-edit text-warning"></i></sup>'));
+                    $.getJSON("/savegoodies", {
+                            locationid: bi,
+                            editeditemname: $(q1).text()
+                        },
+                        function(data) {
+                            if (data == '') {
+                                $.jGrowl("Save Error!", {
+                                    theme: 'error'
+                                });
+
+                            } else {
+                                $.jGrowl("Data was successfully saved", {
+                                    theme: 'success'
+                                });
+                            }
+                        });
+                }
+            });
+
+            $("input.inputbox").blur(function() {
+                //alert(this.defaultValue);
+                var textvalue = $.trim($(this).val());
+                if (textvalue == "") {
+                    textvalue = this.defaultValue;
+                }
+                //var bilitemid = $(bid).val();
+                //                console.log(bilitemid);
+                    $(q1).html((textvalue+'<sup><i class="fa fa-edit text-warning"></i></sup>'));
+                $.getJSON("/savegoodies", {
+                        locationid: bi,
+                        editeditemname: $(q1).text()
+                    },
+                    function(data) {
+                        if (data == '') {
+                            $.jGrowl("Save Error!", {
+                                theme: 'error'
+                            });
+
+                        } else {
+                            $.jGrowl("Data was successfully saved", {
+                                theme: 'success'
+                            });
+                        }
+                    });
+            });
+        }
+    }
     $(document).ready(function() {
         $('#table_staff').DataTable({
 
