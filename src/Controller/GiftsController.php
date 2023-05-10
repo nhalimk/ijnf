@@ -167,4 +167,33 @@ class GiftsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function winner()
+    {   
+		$conn = ConnectionManager::get('default');
+		$str = "SELECT
+                        staffs.fullname, 
+                        staffs.staffno, 
+                        staffs.department, 
+                        staffs.photo
+                    FROM
+                        gifts
+                        INNER JOIN
+                        staffs
+                        ON 
+                            gifts.staffno = gifts.staffno AND
+                            gifts.staffno = staffs.staffno
+                            group by staffs.staffno
+                            order by gifts.id desc ";
+        $data = $conn->execute($str);
+        $staff = $data ->fetchAll('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }

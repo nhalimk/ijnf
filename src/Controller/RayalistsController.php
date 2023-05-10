@@ -52,6 +52,33 @@ class RayalistsController extends AppController
         ]);
         $this->RequestHandler->renderAs($this, 'json');
     }
+    
+    public function arrival()
+    {   
+		$conn = ConnectionManager::get('default');
+		$str = "SELECT
+        staffs.fullname, 
+        staffs.staffno, 
+        staffs.department, 
+        staffs.photo, 
+        date_format(date_add(rayalists.created, interval 8 hour),'%H:%i') masa
+    FROM
+        rayalists
+        INNER JOIN
+        staffs
+        ON 
+            rayalists.staffno = staffs.staffno";
+        $data = $conn->execute($str);
+        $staff = $data ->fetchAll('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 
     /**
      * View method

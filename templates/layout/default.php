@@ -58,6 +58,7 @@
                 <!-- Menu: main ul -->
                 <ul class="menu-list flex-grow-1 mt-3">
                     <li><a class="m-link" href="/dashboard"><i class="icofont-home fs-5"></i> <span>Dashboard</span></a></li>
+                    <li><a class="m-link" href="/lucky"><i class="icofont-home fs-5"></i> <span>Lucky Draw</span></a></li>
                 </ul>
 
                 <button type="button" class="btn btn-link sidebar-mini-btn text-light">
