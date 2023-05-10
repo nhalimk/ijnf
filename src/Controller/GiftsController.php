@@ -17,6 +17,11 @@ class GiftsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->Auth->allow(['winner']);
+    }
     public function index()
     {
         $gifts = $this->paginate($this->Gifts);
