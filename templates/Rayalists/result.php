@@ -2,7 +2,7 @@
 
 <section class="pb-5 pt-5 bg-dark-secondary text-white text-center">
     <h2 class="text-uppercase display-6">IJN Terpaling Raya</h2>
-    <h2 class="text-uppercase display-10">18 SYAWAL 1444, 09 Mei 2023</h2>
+    <h2 class="text-uppercase display-10">19 SYAWAL 1444, 10 Mei 2023</h2>
     <hr class="hr-red" style="width:100%">
 </section>
 <div class="container">

@@ -17,11 +17,7 @@
                             <th><?= $this->Paginator->sort('staffno') ?></th>
                             <th><?= $this->Paginator->sort('fullname') ?></th>
                             <th><?= $this->Paginator->sort('department') ?></th>
-                            <th><?= $this->Paginator->sort('tableno') ?></th>
                             <th><?= $this->Paginator->sort('gate') ?></th>
-                            <th><?= $this->Paginator->sort('created') ?></th>
-                            <th><?= $this->Paginator->sort('updated') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,15 +27,13 @@
                                 <td><?= h($rayalist->staffno) ?></td>
                                 <td><?= h($rayalist->fullname) ?></td>
                                 <td><?= h($rayalist->department) ?></td>
-                                <td><?= h($rayalist->tableno) ?></td>
-                                <td><?= h($rayalist->gate) ?></td>
-                                <td><?= h($rayalist->created) ?></td>
-                                <td><?= h($rayalist->updated) ?></td>
-                                <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $rayalist->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $rayalist->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $rayalist->id], ['confirm' => __('Are you sure you want to delete # {0}?', $rayalist->id)]) ?>
-                                </td>
+                                <td>
+                                
+                                <font id="editedname<?= $rayalist->id ?>" onclick="updateitemname(<?= $rayalist->id ?>)"
+                                        title="Click Here to Edit"> 
+                                <?=$rayalist->gate?> <sup><i class="fa fa-edit text-warning"></i></sup>
+                                </font>    
+                                <?= h($rayalist->gate) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
