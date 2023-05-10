@@ -133,24 +133,31 @@
         $staffno = $('#staffno').val();
         $.ajax({
             type: "GET",
-            url: "https://ijnsurveillance.awan.info/searchstaff?staffno=" + $staffno ,
+            url: "./searchatt?staffno=" + $staffno,
             dataType: "json",
             success: function(dt) {
-                data = dt[0];
-                if (data != null) {
-                    $('#fullname').val(data['fullname']);
-                    $('#department').val(data['department']);
-                    $('#position').val(data['position']);
-                    $('#avatarstaff').attr('src', data['photo']);
+                if (dt['id']) {
+                    window.location.href = './rayalists/result/' + dt['id'];
                 } else {
-                    $('#alert_error').modal('show');
-                    alert('Staff not found. Please proceed to AJK registration counter to resolved your attendance');
+
+                    $.ajax({
+                        type: "GET",
+                        url: "https://ijnsurveillance.awan.info/searchstaff?staffno=" + $staffno,
+                        dataType: "json",
+                        success: function(dt) {
+                            data = dt[0];
+                            if (data != null) {
+                                $('#fullname').val(data['fullname']);
+                                $('#department').val(data['department']);
+                                $('#position').val(data['position']);
+                                $('#avatarstaff').attr('src', data['photo']);
+                            } else {}
+                        },
+                        error: function() {}
+                    });
                 }
             },
-            error: function() {
-                $('#alert_error').modal('show');
-                alert('Staff not found. Please proceed to AJK registration counter to resolved your attendance');
-            }
+            error: function() {}
         });
     }
 

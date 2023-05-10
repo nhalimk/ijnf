@@ -51,10 +51,12 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Rayalists', 'action' => 'dashboard']);
+        $builder->connect('/dashboard', ['controller' => 'Rayalists', 'action' => 'dashboard']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
         $builder->connect('/list', ['controller' => 'Rayalists', 'action' => 'index']);
         $builder->connect('/lucky',array('controller' => 'Gifts','action' => 'lucky','[method]' => ['GET','POST']));
         $builder->connect('/search',array('controller' => 'Rayalists','action' => 'search','[method]' => ['GET','POST']));
+        $builder->connect('/searchatt',array('controller' => 'Rayalists','action' => 'searchatt','[method]' => ['GET','POST']));
         $builder->connect('/check-in', ['controller' => 'Rayalists', 'action' => 'checkin']);
 
         /*

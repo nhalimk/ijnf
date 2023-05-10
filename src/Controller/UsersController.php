@@ -35,7 +35,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect('/list');
+                return $this->redirect('/');
             }
             $this->Flash->error(__('Please check your credentials!'));
         }

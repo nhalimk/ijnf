@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Gifts Controller
@@ -21,6 +22,23 @@ class GiftsController extends AppController
         $gifts = $this->paginate($this->Gifts);
 
         $this->set(compact('gifts'));
+    }
+    
+    public function search()
+    {   
+		$conn = ConnectionManager::get('default');
+		$str = "select * from rayalists 
+				where rayalists.id = $id ";
+        $data = $conn->execute($str);
+        $staff = $data ->fetchAll('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
     }
     public function lucky()
     {

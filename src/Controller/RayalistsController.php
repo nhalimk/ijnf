@@ -184,4 +184,22 @@ class RayalistsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function searchatt()
+    {   
+        $staffno = isset($_GET['staffno']) ? $_GET['staffno'] : '';
+		$conn = ConnectionManager::get('default');
+		$str = "select * from rayalists 
+				where rayalists.staffno = '".$staffno."' ";
+        $data = $conn->execute($str);
+        $staff = $data ->fetch('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }

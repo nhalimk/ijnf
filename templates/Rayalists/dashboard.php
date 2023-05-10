@@ -29,6 +29,11 @@
             </div>
         </div>
         <div class="col-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="text-dark font-weight-bold">Total Arrival <font id="total_arrival"></font></h3>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
                     <!--begin::Table head-->
@@ -46,7 +51,7 @@
                     <tbody>
                         <tr>
                             <th>
-                                <span class="text-gray-800 fw-bold d-block mb-1 fs-6">#List Arrival</span>
+                                <span class="text-gray-800 fw-bold d-block mb-1 fs-6">#List Arrival (Top 10)</span>
                             </th>
                             <th>
                                 <span class="text-gray-800 fw-bold d-block mb-1 fs-6">Staffno</span>
@@ -80,3 +85,21 @@
         </div>
     </div>
 </div>
+
+
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+		$.ajax({
+            type: "GET",
+            url: "./winner",
+            dataType: "json",
+            success: function (dt) {
+            },
+			error: function(){
+                     // $('#alert_error').modal('show');
+            }
+        });
+    });
+</script>
+<?php $this->end(); ?> 
