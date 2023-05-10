@@ -24,7 +24,8 @@ class RayalistsController extends AppController
     }
     public function index()
     {
-        $rayalists = $this->paginate($this->Rayalists);
+        //$rayalists = $this->paginate($this->Rayalists);
+        $rayalists = $this->Rayalists->find('all');
 
         $this->set(compact('rayalists'));
     }
