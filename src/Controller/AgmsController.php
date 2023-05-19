@@ -62,6 +62,24 @@ class AgmsController extends AppController
         $this->RequestHandler->renderAs($this, 'json');
     }
     
+    public function search()
+    {   
+        $id = isset($_GET['sid']) ? $_GET['sid'] : '' ;
+		$conn = ConnectionManager::get('default');
+		$str = "select * from agms 
+				where agms.id = $id ";
+        $data = $conn->execute($str);
+        $staff = $data ->fetchAll('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+    
     public function searchatt()
     {   
         $staffno = isset($_GET['staffno']) ? $_GET['staffno'] : '';
