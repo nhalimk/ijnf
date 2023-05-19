@@ -54,7 +54,7 @@
 </style>
 
 <section class="pb-5 pt-5  text-white text-center">
-	<h2 class="text-uppercase display-6">IJN Terpaling Raya</h2>
+	<h2 class="text-uppercase display-6">IJNKL CLUB AGM 2023</h2>
 	<hr class="hr-red" style="width:80%">
 	<div class="container">
 		<div class="row">
