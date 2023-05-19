@@ -75,12 +75,12 @@
     </div>
 </div>
 
-<section class="pb-5 pt-5  text-dark text-center">
-    <h1 class="text-uppercase display-6">IJNKL CLUB ANNUAL GRAND MEETING (AGM) 2023</h1>
+<section class="pb-5 pt-5  text-white text-center">
+    <h1 class="text-uppercase display-6">IJN Terpaling Raya</h1>
     <h2 class="text-uppercase display-6">Attendance Registration</h2>
     <hr class="hr-red" style="width:80%">
 
-    <?= $this->Form->create($rayalist, ['class' => 'text-left container mt-5', 'id' => 'kt_form']) ?>
+    <?= $this->Form->create($agm, ['class' => 'text-left container mt-5', 'id' => 'kt_form']) ?>
 
     <div class="row">
         <div class="col-6 col-lg-6">
@@ -106,7 +106,7 @@
         <div class="col-12 col-lg-12">
             <div class="form-group position-relative">
                 <input class="form-outline-gray" name="fullname" id="fullname" type="text" required>
-                <input type="hidden" name="location" value="ijn" />
+                <input type="hidden" name="location" value="IJNDinner" />
                 <label class="label-absolute" for="fullname">Full Name</label>
             </div>
         </div>
@@ -136,7 +136,7 @@
             dataType: "json",
             success: function(dt) {
                 if (dt['id']) {
-                    window.location.href = './agm/result/' + dt['id'];
+                    window.location.href = './agms/result/' + dt['id'];
                 } else {
 
                     $.ajax({

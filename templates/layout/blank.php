@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>IJN Terpaling Raya</title>
+  <title>IJN CLUB AGM</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
@@ -18,13 +18,8 @@
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
-.gradient-brown{
-    background-color: #000000;
-    background-image: linear-gradient(43deg, #000000 15%, #ffa300 100%);
-
-}
 </head>
-<body>
+<body style="background-color: #964B00 !important;">
 
 <main>
 

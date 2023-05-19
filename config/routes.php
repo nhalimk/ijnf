@@ -50,19 +50,18 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Rayalists', 'action' => 'dashboard']);
-        $builder->connect('/dashboard', ['controller' => 'Rayalists', 'action' => 'dashboard']);
+        $builder->connect('/', ['controller' => 'Agms', 'action' => 'dashboard']);
+        $builder->connect('/dashboard', ['controller' => 'Agms', 'action' => 'dashboard']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-        $builder->connect('/list', ['controller' => 'Rayalists', 'action' => 'index']);
+        $builder->connect('/list', ['controller' => 'Agms', 'action' => 'index']);
         $builder->connect('/lucky',array('controller' => 'Gifts','action' => 'lucky','[method]' => ['GET','POST']));
-        $builder->connect('/search',array('controller' => 'Rayalists','action' => 'search','[method]' => ['GET','POST']));
-        $builder->connect('/searchatt',array('controller' => 'Rayalists','action' => 'searchatt','[method]' => ['GET','POST']));
+        $builder->connect('/search',array('controller' => 'Agms','action' => 'search','[method]' => ['GET','POST']));
+        $builder->connect('/searchatt',array('controller' => 'Agms','action' => 'searchatt','[method]' => ['GET','POST']));
         $builder->connect('/searchgift',array('controller' => 'Gifts','action' => 'searchgift','[method]' => ['GET','POST']));
         $builder->connect('/searchexgift',array('controller' => 'Gifts','action' => 'searchexgift','[method]' => ['GET','POST']));
-        $builder->connect('/check-in', ['controller' => 'Rayalists', 'action' => 'checkin']);
+        $builder->connect('/check-in', ['controller' => 'Agms', 'action' => 'checkin']);
         $builder->connect('/winner',array('controller' => 'Gifts','action' => 'winner','[method]' => ['GET','POST']));
-        $builder->connect('/arrival',array('controller' => 'Rayalists','action' => 'arrival','[method]' => ['GET','POST']));
-        $builder->connect('/savegoodies',array('controller' => 'Rayalists','action' => 'savegoodies','[method]' => ['GET','POST']));
+        $builder->connect('/arrival',array('controller' => 'Agms','action' => 'arrival','[method]' => ['GET','POST']));
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
