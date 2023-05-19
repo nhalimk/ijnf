@@ -20,7 +20,7 @@ class AgmsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->Auth->allow(['checkin','result','searchatt','dashboard','arrival']);
+        $this->Auth->allow(['checkin','result','searchatt','arrival']);
     }
     public function index()
     {
