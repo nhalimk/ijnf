@@ -148,11 +148,15 @@
 
 <?php $this->start('script'); ?>
 <script type="text/javascript">
-	function generateRandom(maxLimit = 100) {
+	function generateRandom(maxLimit = <?=$gifts->count()+1?>) {
 		let rand = Math.random() * maxLimit;
 		console.log(rand); // say 99.81321410836433
 
 		rand = Math.floor(rand); // 99
+
+		if(rand == 0){
+			rand = 1;
+		}
 
 		return rand;
 	}
