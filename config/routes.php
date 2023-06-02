@@ -59,7 +59,7 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/searchatt',array('controller' => 'Agms','action' => 'searchatt','[method]' => ['GET','POST']));
         $builder->connect('/searchgift',array('controller' => 'Gifts','action' => 'searchgift','[method]' => ['GET','POST']));
         $builder->connect('/searchexgift',array('controller' => 'Gifts','action' => 'searchexgift','[method]' => ['GET','POST']));
-        $builder->connect('/check-in', ['controller' => 'Agms', 'action' => 'checkin']);
+        $builder->connect('/check-in', ['controller' => 'attendances', 'action' => 'checkin']);
         $builder->connect('/winner',array('controller' => 'Gifts','action' => 'winner','[method]' => ['GET','POST']));
         $builder->connect('/arrival',array('controller' => 'Agms','action' => 'arrival','[method]' => ['GET','POST']));
 
