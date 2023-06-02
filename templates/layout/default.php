@@ -58,7 +58,8 @@
                 <!-- Menu: main ul -->
                 <ul class="menu-list flex-grow-1 mt-3">
                     <li><a class="m-link" href="/attendances"><i class="icofont-home fs-5"></i> <span>Attendances</span></a></li>
-                    <li><a class="m-link" href="/surveys"><i class="icofont-home fs-5"></i> <span>Attendances</span></a></li>
+                    <li><a class="m-link" href="/surveys"><i class="icofont-home fs-5"></i> <span>Survey</span></a></li>
+                    <li><a class="m-link" href="/guestlists"><i class="icofont-home fs-5"></i> <span>Guestlist</span></a></li>
                 </ul>
 
                 <button type="button" class="btn btn-link sidebar-mini-btn text-light">

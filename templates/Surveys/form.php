@@ -11,7 +11,7 @@
                         <br />
                         <img src="./img/tag.png" style="max-height:30px">
                         <br />
-                        <h6 class="text-uppercase display-6 mt-4">Attendance Registration</h6>
+                        <h6 class="text-uppercase display-6 mt-4">Survey Form</h6>
                     </div>
                 </div>
                 <hr class="hr-red" style="width:80%">
@@ -19,30 +19,41 @@
                     <div class="card-body">
                         <div class="row" id="form" style="display:none">
                             <div class="col-12">
-                            <?= $this->Form->create($attendance) ?>
-                            <div class="row">
-                                <div class="col-12 col-lg-12">
-                                    <div class="form-group position-relative">
-                                        <input class="form-outline-gray text-center" name="fullname" id="fullname" type="text" required >
-                                        <label class="label-absolute" for="fullname" style="color:#000">Full Name</label>
+                            <?= $this->Form->create($survey) ?>
+                            <input type="hidden" name="fullname" id="fullname"/>
+                            <input type="hidden" name="phone" id="phone"/>
+                            <input type="hidden" name="email" id="email"/>
+                            <div class="form-group text-center">
+                                <label>Do you want to know more of IJN’s Wellness / Medical Check up package?</label>
+                                <div class="row">                                    
+                                    <div class="col-3 text-right">
+                                        <input class="form-check-input" type="radio" name="q1" id="q1_option1" value=1>
+                                        <label class="form-check-label" for="q1_option1">
+                                        Yes &nbsp;
+                                        </label>
+                                    </div>
+                                    <div class="col-3 text-left">
+                                        <input class="form-check-input" type="radio" name="q1" id="q1_option2" value=0 checked>
+                                        <label class="form-check-label" for="q1_option2">
+                                        No
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-12">
-                                    <div class="form-group position-relative">
-                                        <input class="form-outline-gray text-center" name="company" id="company" type="text" required >
-                                        <label class="label-absolute" for="company" style="color:#000">Company Name</label>
+                            </div>
+                            <div class="form-group text-center">
+                                <label>Do you want to have health talks for your organization?</label>
+                                <div class="row">                                    
+                                    <div class="col-3 text-right">
+                                        <input class="form-check-input" type="radio" name="q2" id="q2_option1" value=1>
+                                        <label class="form-check-label" for="q2_option1">
+                                        Yes &nbsp;
+                                        </label>
                                     </div>
-                                </div>
-                                <div class="col-6 col-lg-6">
-                                    <div class="form-group position-relative">
-                                        <input class="form-outline-gray" name="phone" id="phone" type="text" required>
-                                        <label class="label-absolute" for="phone" style="color:#000">Phone</label>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-lg-6">
-                                    <div class="form-group position-relative">
-                                        <input class="form-outline-gray" name="email" id="email" type="text" required>
-                                        <label class="label-absolute" for="email" style="color:#000">Email Adress</label>
+                                    <div class="col-3 text-left">
+                                        <input class="form-check-input" type="radio" name="medication" id="q2_option2" value=0 checked>
+                                        <label class="form-check-label" for="q2_option2">
+                                        No
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +90,6 @@
                             <tr>
                                 <th>Full Name</th>
                                 <th>Company</th>
-                                <th>Table</th>
                                 <th>#</th>
                             </tr>
                             <tbody id="tabledata">
@@ -107,8 +117,6 @@
         $('#form').show(500);
         $('#fullname').val($('#name'+id).html());
         $('#company').val($('#com'+id).html());
-        $('#phone').val($('#phone'+id).html());
-        $('#email').val($('#email'+id).html());
     }
 
     $(document).ready(function() {
@@ -118,15 +126,18 @@
             //alert($searchname);
             $.ajax({
                 type: "GET",
-                url: "./searchguest?name=" + $searchname+"&company="+$searchcompany,
+                url: "./searchattendance?name=" + $searchname+"&company="+$searchcompany,
                 dataType: "json",
                 success: function(dt) {
                     $('#tabledata').html('');
                     $.each( dt, function( i, item ) {
+                            
                         $('#tabledata').append(
                             '<tr>'+
                                 '<td><font id="name'+item['id']+'">'+item['fullname']+'</font></td>'+
-                                '<td <font id="com'+item['id']+'">'+item['company']+'</td>'+
+                                '<td <font id="com'+item['id']+'">'+item['company']+'</td>'++
+                                '<font id="phone'+item['id']+'" style="display:none">'+item['phone']+'</font>'+
+                                '<font id="email'+item['id']+'" style="display:none">'+item['email']+'</font>'
                                 '<td >'+item['tableno']+'</td>'+
                                 '<td><a onclick="checkin('+item['id']+')"  class="btn btn-success w-sm-100 mb-2 mb-md-0"><i class="fa fa-check me-2 fs-6"></i> | Checkin</a></td>'+
                             '</tr>' );

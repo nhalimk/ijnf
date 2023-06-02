@@ -53,17 +53,12 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/', ['controller' => 'Attendances', 'action' => 'index']);
         $builder->connect('/dashboard', ['controller' => 'Attendances', 'action' => 'index']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-        $builder->connect('/list', ['controller' => 'Agms', 'action' => 'index']);
-        $builder->connect('/lucky',array('controller' => 'Gifts','action' => 'lucky','[method]' => ['GET','POST']));
-        $builder->connect('/search',array('controller' => 'Agms','action' => 'search','[method]' => ['GET','POST']));
-        $builder->connect('/searchatt',array('controller' => 'Agms','action' => 'searchatt','[method]' => ['GET','POST']));
-        $builder->connect('/searchgift',array('controller' => 'Gifts','action' => 'searchgift','[method]' => ['GET','POST']));
-        $builder->connect('/searchexgift',array('controller' => 'Gifts','action' => 'searchexgift','[method]' => ['GET','POST']));
         $builder->connect('/check-in', ['controller' => 'Attendances', 'action' => 'checkin']);
         $builder->connect('/register', ['controller' => 'Attendances', 'action' => 'register']);
         $builder->connect('/winner',array('controller' => 'Gifts','action' => 'winner','[method]' => ['GET','POST']));
         $builder->connect('/arrival',array('controller' => 'Agms','action' => 'arrival','[method]' => ['GET','POST']));
         $builder->connect('/searchguest',array('controller' => 'Attendances','action' => 'search','[method]' => ['GET','POST']));
+        $builder->connect('/searchattendance',array('controller' => 'Attendances','action' => 'searchatt','[method]' => ['GET','POST']));
         $builder->connect('/survey', ['controller' => 'Surveys', 'action' => 'form']);
         
         /*

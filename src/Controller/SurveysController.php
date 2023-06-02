@@ -27,7 +27,7 @@ class SurveysController extends AppController
 
         $this->set(compact('surveys'));
     }
-    public function surveys()
+    public function form()
     {
         $this->viewBuilder()->setLayout('blank');
         

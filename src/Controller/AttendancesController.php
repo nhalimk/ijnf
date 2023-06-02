@@ -20,7 +20,7 @@ class AttendancesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->Auth->allow(['checkin','result','search','register']);
+        $this->Auth->allow(['checkin','result','search','searchatt','register']);
     }
     public function index()
     {
@@ -45,6 +45,32 @@ class AttendancesController extends AppController
                 designation, 
                 mobilenumber, 
                 emailaddress from guestlists ";
+
+        if($name != ''){
+            $str.=" where company like '%".$company."%'";
+        }
+
+        if($company != ''){
+            $str.=" where company like '%".$company."%'";
+        }
+        $data = $conn->execute($str);
+        $staff = $data ->fetchAll('assoc');
+        
+        $my_results = ['foo'=>'bar'];
+
+        $this->set([
+            'my_response' => $staff,
+            '_serialize' => 'my_response',
+        ]);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+    public function searchatt()
+    {   
+        $name = isset($_GET['name']) ? $_GET['name'] : '' ;
+        $company = isset($_GET['company']) ? $_GET['company'] : '' ;
+		$conn = ConnectionManager::get('default');
+		$str = "Select 
+                * from attendances ";
 
         if($name != ''){
             $str.=" where company like '%".$company."%'";
