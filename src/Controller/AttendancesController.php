@@ -25,6 +25,8 @@ class AttendancesController extends AppController
     public function index()
     {
         $attendances = $this->paginate($this->Attendances);
+        $attendances = $this->Attendances->find('all');
+
 
         $this->set(compact('attendances'));
     }
@@ -72,7 +74,7 @@ class AttendancesController extends AppController
             if ($this->Attendances->save($attendance)) {
                 return $this->redirect(['action' => 'result/',$attendance->id]);
 
-                return $this->redirect(['action' => 'index']);
+                //return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The attendance could not be saved. Please, try again.'));
         }

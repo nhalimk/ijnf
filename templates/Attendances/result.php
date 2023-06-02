@@ -28,12 +28,15 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="font-weight-bold">List Guest in Your Table</h3>
+                </div>
                 <div class="card-body">
                     <table class="table table-striped" id="listsearching">
                         <tr>
                             <th>Full Name</th>
                             <th>Company</th>
-                            <th>Table</th>
+                            <th>Table No</th>
                         </tr>
                         <tbody id="tabledata">                            
                         <?php foreach ($res2 as $item): ?>

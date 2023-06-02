@@ -50,8 +50,8 @@ return static function (RouteBuilder $routes) {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Agms', 'action' => 'dashboard']);
-        $builder->connect('/dashboard', ['controller' => 'Agms', 'action' => 'dashboard']);
+        $builder->connect('/', ['controller' => 'Attendances', 'action' => 'index']);
+        $builder->connect('/dashboard', ['controller' => 'Attendances', 'action' => 'index']);
         $builder->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
         $builder->connect('/list', ['controller' => 'Agms', 'action' => 'index']);
         $builder->connect('/lucky',array('controller' => 'Gifts','action' => 'lucky','[method]' => ['GET','POST']));
@@ -64,7 +64,8 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/winner',array('controller' => 'Gifts','action' => 'winner','[method]' => ['GET','POST']));
         $builder->connect('/arrival',array('controller' => 'Agms','action' => 'arrival','[method]' => ['GET','POST']));
         $builder->connect('/searchguest',array('controller' => 'Attendances','action' => 'search','[method]' => ['GET','POST']));
-
+        $builder->connect('/survey', ['controller' => 'Surveys', 'action' => 'form']);
+        
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */

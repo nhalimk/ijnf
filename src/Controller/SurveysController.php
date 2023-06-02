@@ -16,11 +16,30 @@ class SurveysController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->Auth->allow(['form','result']);
+    }
     public function index()
     {
         $surveys = $this->paginate($this->Surveys);
 
         $this->set(compact('surveys'));
+    }
+    public function surveys()
+    {
+        $this->viewBuilder()->setLayout('blank');
+        
+        $survey = $this->Surveys->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $survey = $this->Surveys->patchEntity($survey, $this->request->getData());
+            if ($this->Surveys->save($survey)) {
+                return $this->redirect(['action' => 'result/',$survey->id]);
+            }
+            $this->Flash->error(__('The survey could not be saved. Please, try again.'));
+        }
+        $this->set(compact('survey'));
     }
 
     /**

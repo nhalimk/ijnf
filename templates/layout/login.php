@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="iSurveillance">
     <meta name="author" content="Institut Jantung Negara">
-    <title>AGM IJN Club</title>
+    <title>IJNF Hi-Tea</title>
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -61,7 +61,7 @@
             <div class="col-12 text-center">
                 <div class="card mt-4">
                     <div class="card-header " style="background-color: brown;">
-                        <h3 class="text-white font-weight-bold">AGM IJN Club</h3>
+                        <h3 class="text-white font-weight-bold">IJNF Hi-Tea</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">

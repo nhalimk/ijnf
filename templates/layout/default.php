@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AGM IJN Club</title>
+    <title>IJNF Hi-Tea</title>
     <link rel="apple-touch-icon" sizes="152x152" href="/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -57,8 +57,8 @@
             <div class="d-flex flex-column h-100">
                 <!-- Menu: main ul -->
                 <ul class="menu-list flex-grow-1 mt-3">
-                    <li><a class="m-link" href="/dashboard"><i class="icofont-home fs-5"></i> <span>Dashboard</span></a></li>
-                    <li><a class="m-link" href="/lucky"><i class="icofont-home fs-5"></i> <span>Lucky Draw</span></a></li>
+                    <li><a class="m-link" href="/attendances"><i class="icofont-home fs-5"></i> <span>Attendances</span></a></li>
+                    <li><a class="m-link" href="/surveys"><i class="icofont-home fs-5"></i> <span>Attendances</span></a></li>
                 </ul>
 
                 <button type="button" class="btn btn-link sidebar-mini-btn text-light">
