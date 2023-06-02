@@ -59,9 +59,11 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/searchatt',array('controller' => 'Agms','action' => 'searchatt','[method]' => ['GET','POST']));
         $builder->connect('/searchgift',array('controller' => 'Gifts','action' => 'searchgift','[method]' => ['GET','POST']));
         $builder->connect('/searchexgift',array('controller' => 'Gifts','action' => 'searchexgift','[method]' => ['GET','POST']));
-        $builder->connect('/check-in', ['controller' => 'attendances', 'action' => 'checkin']);
+        $builder->connect('/check-in', ['controller' => 'Attendances', 'action' => 'checkin']);
+        $builder->connect('/register', ['controller' => 'Attendances', 'action' => 'register']);
         $builder->connect('/winner',array('controller' => 'Gifts','action' => 'winner','[method]' => ['GET','POST']));
         $builder->connect('/arrival',array('controller' => 'Agms','action' => 'arrival','[method]' => ['GET','POST']));
+        $builder->connect('/searchguest',array('controller' => 'Attendances','action' => 'search','[method]' => ['GET','POST']));
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.

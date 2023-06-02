@@ -1,25 +1,5 @@
-<div class="modal fade mt-4" id="alert_error">
-    <div class="modal-dialog modal-lg" role="document" style="width:100% !important">
-        <div class="modal-content" style="background-color: #fff0 !important;border: 0px !important">
-            <div class="modal-body">
-                <div class="card mt-4" style="background-color: #fff;border-radius: 50px;border:1px solid #000;font-size: 12px !important">
-                    <div class="ribbon"><span>Error!!</span></div>
-                    <div class="card-body text-center">
-                        <h3>Staff not found</h3>
-                        <h3>Please proceed to registration counter to resolved your attendance</h3>
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <button type='button' class='btn btn-danger' id="btn_ok"><i class="fas fa-times-circle text-white"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container mt-4">
+<div class="container-fluid mt-4">
     <div class="card">
         <div class="card-body">
 
@@ -37,52 +17,74 @@
                 <hr class="hr-red" style="width:80%">
                 <div class="card text-dark">
                     <div class="card-body">
-
-                        <div class="row">
+                        <div class="row" id="form" style="display:none">
+                            <div class="col-12">
+                            <?= $this->Form->create($attendance) ?>
+                            <div class="row">
+                                <div class="col-12 col-lg-12">
+                                    <div class="form-group position-relative">
+                                        <input class="form-outline-gray text-center" name="fullname" id="fullname" type="text" required >
+                                        <label class="label-absolute" for="fullname" style="color:#000">Full Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12">
+                                    <div class="form-group position-relative">
+                                        <input class="form-outline-gray text-center" name="company" id="company" type="text" required >
+                                        <label class="label-absolute" for="company" style="color:#000">Company Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-6">
+                                    <div class="form-group position-relative">
+                                        <input class="form-outline-gray" name="phone" id="phone" type="text" required>
+                                        <label class="label-absolute" for="phone" style="color:#000">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-6">
+                                    <div class="form-group position-relative">
+                                        <input class="form-outline-gray" name="email" id="email" type="text" required>
+                                        <label class="label-absolute" for="email" style="color:#000">Email Adress</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <input class="pr-5 pl-5 pt-2 pb-2 text-white btn text-uppercase font-weight-bold btn-gradient mt-4 mb-4" type="submit" name="submit" id="submit" value="Submit">
+                                </div>
+                            </div>
+                            <?= $this->Form->end() ?>
+                            </div>
+                        </div>
+                        <div class="row" id="boxsearch">
 
                             <div class="col-6 col-lg-6">
                                 <div class="form-group position-relative">
-                                    <input class="form-outline-gray" name="search1" id="search1" type="text" required>
+                                    <input class="form-outline-gray" name="search1" id="search1" type="text">
                                     <label class="label-absolute" for="search1" style="color:#000">Company Name</label>
                                 </div>
                             </div>
 
                             <div class="col-6 col-lg-6">
                                 <div class="form-group position-relative">
-                                    <input class="form-outline-gray" name="search2" id="search2" type="text" required>
+                                    <input class="form-outline-gray" name="search2" id="search2" type="text">
                                     <label class="label-absolute" for="search2" style="color:#000">Name</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="btnsearch">
                             <div class="col-12 text-center">
-                                <input class="pr-5 pl-5 pt-2 pb-2 text-white btn text-uppercase font-weight-bold btn-info mt-4 mb-4" type="button" name="submit" id="search" value="Search">
+                                <input class="pr-5 pl-5 pt-2 pb-2 text-white btn text-uppercase font-weight-bold btn-info mt-4 mb-4" type="button"  id="search" value="Search">
                             </div>
                         </div>
-                        <table class="table table-sm table-striped">
+                        <table class="table table-striped" id="listsearching">
                             <tr>
                                 <th>Full Name</th>
                                 <th>Company</th>
                                 <th>Table</th>
                                 <th>#</th>
                             </tr>
+                            <tbody id="tabledata">
+                            </tbody>
                         </table>
-                        <?= $this->Form->create($attendance) ?>
-                        <div class="row">
-                            <div class="col-12 col-lg-12">
-                                <div class="form-group position-relative">
-                                    <input class="form-outline-gray" name="fullname" id="fullname" type="text" required>
-                                    <label class="label-absolute" for="fullname">Full Name</label>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <div class="form-group position-relative">
-                                    <input class="form-outline-gray" name="department" id="department" type="text" required>
-                                    <label class="label-absolute" for="department">Department</label>
-                                </div>
-                            </div>
-                        </div>
-                        <?= $this->Form->end() ?>
                     </div>
                 </div>
             </section>
@@ -98,6 +100,39 @@
         $('#alert_error').modal('hide');
     });
 
-    $(document).ready(function() {});
+    function checkin(id){
+        $('#listsearching').hide(500);
+        $('#boxsearch').hide(500);
+        $('#btnsearch').hide(500);
+        $('#form').show(500);
+        $('#fullname').val($('#name'+id).html());
+        $('#company').val($('#com'+id).html());
+    }
+
+    $(document).ready(function() {
+        $('#search').click(function () {
+            $searchname = $('#search2').val();
+            $searchcompany = $('#search1').val();
+            //alert($searchname);
+            $.ajax({
+                type: "GET",
+                url: "./searchguest?name=" + $searchname+"&company="+$searchcompany,
+                dataType: "json",
+                success: function(dt) {
+                    $('#tabledata').html('');
+                    $.each( dt, function( i, item ) {
+                        $('#tabledata').append(
+                            '<tr>'+
+                                '<td><font id="name'+item['id']+'">'+item['fullname']+'</font></td>'+
+                                '<td <font id="com'+item['id']+'">'+item['company']+'</td>'+
+                                '<td >'+item['tableno']+'</td>'+
+                                '<td><a onclick="checkin('+item['id']+')"  class="btn btn-success w-sm-100 mb-2 mb-md-0"><i class="fa fa-check me-2 fs-6"></i> | Checkin</a></td>'+
+                            '</tr>' );
+                    });
+                },
+                error: function() {}
+            });
+        });
+    });
 </script>
 <?php $this->end(); ?>
